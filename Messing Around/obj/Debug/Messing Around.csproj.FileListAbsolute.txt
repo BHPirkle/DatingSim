@@ -1,0 +1,6 @@
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\bin\Debug\Messing_Around.exe
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\bin\Debug\Messing_Around.pdb
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\obj\Debug\Messing Around.csprojAssemblyReference.cache
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\obj\Debug\Messing Around.csproj.CoreCompileInputs.cache
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\obj\Debug\Messing_Around.exe
+C:\Users\Seth\RiderProjects\Messing Around\Messing Around\obj\Debug\Messing_Around.pdb
