@@ -11,14 +11,26 @@ namespace MessingAroundMobile
         {
             switch (color.ToLower())
             {
-                case "white":
+                case "w":
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
-                case "yellow":
+                case "g":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "y":
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     break;
-                case "blue":
+                case "dy":
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    break;
+                case "b":
                     Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "db":
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    break;
+                case "r":
+                    Console.ForegroundColor = ConsoleColor.Red;
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.White;
@@ -40,7 +52,7 @@ namespace MessingAroundMobile
                         {
                             text[i] = '\0';
                             text[i + 1] = '\0';
-                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            setColor("y");
                         }
                         
                         // Blue
@@ -48,7 +60,7 @@ namespace MessingAroundMobile
                         {
                             text[i] = '\0';
                             text[i + 1] = '\0';
-                            Console.ForegroundColor = ConsoleColor.Blue;
+                            setColor("b");
                         }
                         
                         // Green
@@ -56,7 +68,7 @@ namespace MessingAroundMobile
                         {
                             text[i] = '\0';
                             text[i + 1] = '\0';
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            setColor("g");
                         }
 
                         // Dark Yellow
@@ -65,7 +77,7 @@ namespace MessingAroundMobile
                             text[i] = '\0';
                             text[i + 1] = '\0';
                             text[i + 2] = '\0';
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            setColor("dy");
                         }
                         
                         // White
@@ -73,7 +85,7 @@ namespace MessingAroundMobile
                         {
                             text[i] = '\0';
                             text[i + 1] = '\0';
-                            Console.ForegroundColor = ConsoleColor.White;
+                            setColor("w");
                         }
                         
                         // Longer pause, seconds based on number after \L (example: \L1 will extend the wait by 1 second)
@@ -113,7 +125,7 @@ namespace MessingAroundMobile
         {
             bool cont = false;
             
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            setColor("dy");
 
             richText(settingText);
 
@@ -130,7 +142,7 @@ namespace MessingAroundMobile
             // Creating actions method, should allow for more... user-friendly input?
             Console.WriteLine();
             
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            setColor("y");
             
             for (int i = 0; i < actions.Length; i++)
             {
@@ -139,17 +151,17 @@ namespace MessingAroundMobile
             
             Console.Write("[QUIT]");
 
-            Console.ForegroundColor = ConsoleColor.White;
+            setColor("w");
 
             return actions;
         }
 
         static string getAction(string[] actions) // Focus on after text manipulation
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            setColor("y");
             Console.WriteLine();
             string action = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
+            setColor("w");
 
             while (action != "")
             {
@@ -166,12 +178,12 @@ namespace MessingAroundMobile
                     }
                 }
 
-                Console.ForegroundColor = ConsoleColor.Red;
+                setColor("r");
                 Console.WriteLine("That is not a valid action.");
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                setColor("y");
                 action = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.White;
+                setColor("w");
             }
 
             return "Error";
@@ -185,9 +197,9 @@ namespace MessingAroundMobile
                 {
                     if (next[i] == true)
                     {
-                        setColor("blue");
+                        setColor("b");
                         Console.WriteLine("[{0}]", actions[i].ToUpper());
-                        setColor("white");
+                        setColor("w");
                         Console.WriteLine();
                         richText(responses[i]);
                         Console.WriteLine();
@@ -195,9 +207,9 @@ namespace MessingAroundMobile
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        setColor("db");
                         Console.WriteLine("[{0}]", actions[i].ToUpper());
-                        Console.ForegroundColor = ConsoleColor.White;
+                        setColor("w");
                         Console.WriteLine();
                         richText(responses[i]);
                         return false;
@@ -239,17 +251,17 @@ namespace MessingAroundMobile
             // Ask for name, use system name as default.
             Console.WriteLine("Is your name {0}?", Environment.UserName);
             Console.WriteLine("ENTER \"Y\" OR \"N\" TO ANSWER]");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            setColor("y");
             string answer = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
+            setColor("w");
 
             // If the system name is not preferred, then get the real name.
             if (answer.ToLower() == "n")
             {
                 Console.WriteLine("Please enter your preferred name:");
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                setColor("y");
                 name = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.White;
+                setColor("w");
                 Console.WriteLine("Okay, {0}. We will start the program.", name);
             }
 
@@ -306,6 +318,14 @@ namespace MessingAroundMobile
                 "\\DYYou try winking again, but he continues picking his teeth unimpressed",
                 "\\DYYou comment on his \\Ytoothpick\\DY, noting that he looks 10% cooler with it in."
             };
+            initializeScene(settingText, actions, responses, next);
+
+            settingText =
+                "\\DYHe takes a step forward, putting his hands in his jacket pockets. He moves the \\Ytoothpick \\DYaround in his mouth.";
+            actions = new string[] {"flirt", "stupid", "snap"};
+            next = new bool[] {false, true, false};
+            responses = new string[]
+                {"\\DYYou fiddle with your hair, unsure of what other moves you could make besides winking.", "\\DYYou tell him the \\Ytoothpick \\DYmakes him look silly. He bites down and breaks it, the \\Ytoothpick \\DYfalling to the floor.", "\\DYYou open Snapchat on your phone, offering your \\YQR code\\DY. He doesn't move."};
             initializeScene(settingText, actions, responses, next);
         }
     }
