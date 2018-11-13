@@ -32,13 +32,16 @@ namespace MessingAroundMobile
                 case "r":
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
+                case "dr":
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    break;
                 default:
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
         }
 
-        static void richText(string input) // Making rich text module
+        static void display(string input) // Making rich text module
         {
             char[] text = input.ToCharArray();
             
@@ -63,6 +66,14 @@ namespace MessingAroundMobile
                             setColor("b");
                         }
                         
+                        // Red
+                        if (text[i + 1] == 'R')
+                        {
+                            text[i] = '\0';
+                            text[i + 1] = '\0';
+                            setColor("r");
+                        }
+                        
                         // Green
                         if (text[i + 1] == 'G')
                         {
@@ -78,6 +89,15 @@ namespace MessingAroundMobile
                             text[i + 1] = '\0';
                             text[i + 2] = '\0';
                             setColor("dy");
+                        }
+                        
+                        // Dark Red
+                        if (text[i + 1] == 'D' && text[i + 2] == 'R')
+                        {
+                            text[i] = '\0';
+                            text[i + 1] = '\0';
+                            text[i + 2] = '\0';
+                            setColor("dr");
                         }
                         
                         // White
@@ -127,7 +147,7 @@ namespace MessingAroundMobile
             
             setColor("dy");
 
-            richText(settingText);
+            display(settingText);
 
             cont = canContinue(actions, responses, next);
             
@@ -201,7 +221,7 @@ namespace MessingAroundMobile
                         Console.WriteLine("[{0}]", actions[i].ToUpper());
                         setColor("w");
                         Console.WriteLine();
-                        richText(responses[i]);
+                        display(responses[i]);
                         Console.WriteLine();
                         return true;
                     }
@@ -211,7 +231,7 @@ namespace MessingAroundMobile
                         Console.WriteLine("[{0}]", actions[i].ToUpper());
                         setColor("w");
                         Console.WriteLine();
-                        richText(responses[i]);
+                        display(responses[i]);
                         return false;
                     }
                 }
@@ -277,6 +297,7 @@ namespace MessingAroundMobile
             Console.Clear();
 
             tutorial:
+            // Pretty self-explanatory.
             settingText =
                 "\\DYWelcome to Seth's Dating Sim, where you can live out your desires of dating.\\L1.\\L1.\\L2 \\YBartosz Burda\\DY!!!!!!!!!!!!";
             actions = new string[] {"play"};
@@ -299,7 +320,8 @@ namespace MessingAroundMobile
             initializeScene(settingText, actions, responses, next);
 
             sceneOne:
-            settingText = "\\DYA wild \\GBartosz Burda \\DYappears in front of you!\nWhat should you do?";
+            // Initial meet.
+            settingText = "\\DYA wild \\YBartosz Burda \\DYappears in front of you!\nWhat should you do?";
             actions = new string[] {"attack", "flirt", "run"};
             next = new bool[] {false, true, false};
             responses = new string[]
@@ -326,6 +348,14 @@ namespace MessingAroundMobile
             next = new bool[] {false, true, false};
             responses = new string[]
                 {"\\DYYou fiddle with your hair, unsure of what other moves you could make besides winking.", "\\DYYou tell him the \\Ytoothpick \\DYmakes him look silly. He bites down and breaks it, the \\Ytoothpick \\DYfalling to the floor.", "\\DYYou open Snapchat on your phone, offering your \\YQR code\\DY. He doesn't move."};
+            initializeScene(settingText, actions, responses, next);
+
+            sceneTwo:
+            // Fight scene.
+            settingText = "\\R\\L1H\\L1e\\L1'\\L1s\\L1 \\L1m\\L1a\\L1d\\L1.";
+            actions = new string[] {"attack", "flirt", "run"};
+            next = new bool[] {true, false, false};
+            responses = new string[] {"\\DRYou throw a punch and hit \\RBart \\DRdirectly in the chest.", "\\DYYou try \\Ydouble-winking \\DYto impress him, but he's teeming with anger.", "\\DYYou think about running, but can't since there's no controls for that."};
             initializeScene(settingText, actions, responses, next);
         }
     }
