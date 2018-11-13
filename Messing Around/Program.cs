@@ -270,7 +270,7 @@ namespace MessingAroundMobile
 
             // Ask for name, use system name as default.
             Console.WriteLine("Is your name {0}?", Environment.UserName);
-            Console.WriteLine("ENTER \"Y\" OR \"N\" TO ANSWER]");
+            Console.WriteLine("[ENTER \"Y\" OR \"N\" TO ANSWER]");
             setColor("y");
             string answer = Console.ReadLine();
             setColor("w");
