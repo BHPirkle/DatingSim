@@ -25,6 +25,13 @@ namespace MessingAroundMobile
                             setting[i + 1] = '\0';
                             Console.ForegroundColor = ConsoleColor.Yellow;
                         }
+                        
+                        if (setting[i + 1] == 'B')
+                        {
+                            setting[i] = '\0';
+                            setting[i + 1] = '\0';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
 
                         // Dark Yellow
                         if (setting[i + 1] == 'D' && setting[i + 2] == 'Y')
@@ -131,6 +138,11 @@ namespace MessingAroundMobile
                 {
                     if (next[i] == true)
                     {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("[{0}]", actions[i].ToUpper());
+                        Console.ForegroundColor = ConsoleColor.White;
+                        displaySetting(responses[i]);
+                        Console.WriteLine();
                         return true;
                     }
                     else
@@ -191,10 +203,20 @@ namespace MessingAroundMobile
             tutorial:
             actions = new string[] {"continue"};
             next = new bool[] {true};
-            responses = new string[] {"Error"};
+            responses = new string[] {"\\DYIn this game, you will be presented with a \\Yscenario \\DYwith its own \\Yactions\\DY."};
             
             displaySetting("\\DYWelcome to Seth's Dating Sim, where you can live out your desires of dating.\\L1.\\L1.\\L2 \\YBartosz Burda\\DY!!!!!!!!!!!!");
 
+            while (cont == false)
+            {
+                cont = getResponse(getAction(displayActions(actions)), actions, responses, next);
+            }
+
+            cont = false;
+            responses = new string[] {"temp"};
+            
+            displaySetting("\\DYSimply type exactly what's in the brackets. (ex. \\Y[CONTINUE] \\DY would be entered as \"\\Ycontinue\\DY.\"");
+            
             while (cont == false)
             {
                 cont = getResponse(getAction(displayActions(actions)), actions, responses, next);
