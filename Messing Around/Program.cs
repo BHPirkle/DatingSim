@@ -357,6 +357,11 @@ namespace MessingAroundMobile
             next = new bool[] {true, false, false};
             responses = new string[] {"\\DRYou throw a punch and hit \\RBart \\DRdirectly in the chest.", "\\DYYou try \\Ydouble-winking \\DYto impress him, but he's teeming with anger.", "\\DYYou think about running, but can't since there's no controls for that."};
             initializeScene(settingText, actions, responses, next);
+
+            settingText = "\\DR-5 HP\n\\RBart: \\WYou're gonna regret that! I'm a freaking \\Rpilot\\W!";
+            actions = new string[] {"attack", "apologize", "flirt"};
+            next = new bool[] {true, false, false};
+            responses = new string[] {""};
         }
     }
 }
