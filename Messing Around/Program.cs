@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 
 namespace MessingAroundMobile
@@ -263,7 +264,6 @@ namespace MessingAroundMobile
             string settingText = "Empty";
             string[] actions = { };
             string[] responses = { };
-            bool cont = false;
             bool[] next = { };
 
             // Ask for name, use system name as default.
@@ -295,6 +295,11 @@ namespace MessingAroundMobile
             Thread.Sleep(2 * 100);
             Console.Clear();
 
+            if (args[0] == "-skip")
+            {
+                goto sceneTwo;
+            }
+            
             tutorial:
             // Pretty self-explanatory.
             settingText =
@@ -354,10 +359,16 @@ namespace MessingAroundMobile
             settingText = "\\R\\L1H\\L1e\\L1'\\L1s\\L1 \\L1m\\L1a\\L1d\\L1.";
             actions = new string[] {"attack", "flirt", "run"};
             next = new bool[] {true, false, false};
-            responses = new string[] {"\\DRYou throw a punch and hit \\RBart \\DRdirectly in the chest.", "\\DYYou try \\Ydouble-winking \\DYto impress him, but he's teeming with anger.", "\\DYYou think about running, but can't since there's no controls for that."};
+            responses = new string[] {"\\DRYou throw a punch and hit \\RBart \\DRdirectly in the chest.\n\\DR[-5 HP]", "\\DYYou try \\Ydouble-winking \\DYto impress him, but he's teeming with anger.", "\\DYYou think about running, but can't since there's no controls for that."};
             initializeScene(settingText, actions, responses, next);
-
-            settingText = "\\DR-5 HP\n\\RBart: \\WYou're gonna regret that! I'm a freaking \\R\\L1p\\L1i\\L1l\\L1o\\L1t\\W bro!!!";
+            
+            display("\\RHP [\\G||||||||||\\R]");
+            Console.WriteLine();
+            replaceAndWait(2);
+            display("\\RHP [\\G|||||||||\\R|]");
+            Console.WriteLine();
+            
+            settingText = "\\RBart: \\WYou're gonna regret that! I'm a freaking \\R\\L1p\\L1i\\L1l\\L1o\\L1t\\W bro!!!";
             actions = new string[] {"attack", "apologize", "flirt", "run"};
             next = new bool[] {false, true, false, false};
             responses = new string[]
@@ -365,11 +376,45 @@ namespace MessingAroundMobile
                 "\\DYYou throw another punch, but he simply moves to the side.",
                 "\\DYYou apologize for hurting him in hopes of mercy. \\YBart \\DYblushes and looks down.\n\\RBart: \\WI'm really just a softy, I don't actually like fighting\\L1.\\L1.\\L1.\\L1 I'm sorry\\L1.\\L1.\\L1.",
                 "\\DYYou ask him for his snap, but he's still fuming.",
-                "\\DYYou wish you were able to use \\YWASD\\DY, but this is just a text game."
+                "\\DYYou wish you were able to use \\YWASD\\DY, but this is only a text game."
             };
             initializeScene(settingText, actions, responses, next);
             
-            // Either have him punch or end the fight, decide in the morning I guess
+            settingText =
+                "\\RBart \\DRpunches you in the gut.\\L7 You clutch yourself in pain.\n\\RBart: \\WHa! Just kidding!";
+            actions = new string[] {"attack", "joke", "flirt", "run"};
+            next = new bool[] {true, false, false, false};
+            responses = new string[]
+            {
+                "\\DRYou launch your foot into \\RBart\\DR's crotch.\n\\DR[-10 HP]",
+                "\\DRYou tell him that he's cool.\\L1.\\L1.\\L1 \\DYHe just takes it as a compliment.",
+                "\\DYYou aren't in the mood to flirt.",
+                "\\DRLOOK! I \\L2C\\L2A\\L2N\\L2'\\L2T just add movement to a text game! Stop choosing this action!"
+            };
+            initializeScene(settingText, actions, responses, next);
+            
+            display("\\RHP [\\G|||||||||\\R|]");
+            Console.WriteLine();
+            replaceAndWait(2);
+            display("\\RHP [\\G|||||||\\R|||]");
+            Console.WriteLine();
+
+            settingText = "\\RBart: \\WI'm gonna break you, just like.\\L1.\\L1.\\L3 \\RCharlotte\\W!!!";
+            actions = new string[] {"attack", "charlotte?", "run"};
+            next = new bool[] {true, false, false};
+            responses = new string[]
+            {
+                "\\DRYou punch him square in the jaw. You hear his teeth crunch.\n\\DR[-10 HP]",
+                "\\DRYou ask him about who \\RCharlotte \\DRis. He crosses his arms.\n\\RBart: \\WDon't ask me about her! I'm a \\R\\L1f\\L1r\\L1e\\L1e \\L1a\\L1g\\L1e\\L1n\\L1t\\W, baby!",
+                "\\DRYou can't run."
+            };
+            initializeScene(settingText, actions, responses, next);
+            
+            display("\\RHP [\\G|||||||\\R|||]");
+            Console.WriteLine();
+            replaceAndWait(2);
+            display("\\RHP [\\G|||||\\R|||||]");
+            Console.WriteLine();
         }
     }
 }
