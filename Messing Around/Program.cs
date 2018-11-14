@@ -368,6 +368,8 @@ namespace MessingAroundMobile
                 "\\DYYou wish you were able to use \\YWASD\\DY, but this is just a text game."
             };
             initializeScene(settingText, actions, responses, next);
+            
+            // Either have him punch or end the fight, decide in the morning I guess
         }
     }
 }
