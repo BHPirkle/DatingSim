@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mime;
 using System.Threading;
 
 namespace MessingAroundMobile
@@ -270,6 +268,7 @@ namespace MessingAroundMobile
 
             // Ask for name, use system name as default.
             Console.WriteLine("Is your name {0}?", Environment.UserName);
+            
             Console.WriteLine("[ENTER \"Y\" OR \"N\" TO ANSWER]");
             setColor("y");
             string answer = Console.ReadLine();
@@ -358,10 +357,17 @@ namespace MessingAroundMobile
             responses = new string[] {"\\DRYou throw a punch and hit \\RBart \\DRdirectly in the chest.", "\\DYYou try \\Ydouble-winking \\DYto impress him, but he's teeming with anger.", "\\DYYou think about running, but can't since there's no controls for that."};
             initializeScene(settingText, actions, responses, next);
 
-            settingText = "\\DR-5 HP\n\\RBart: \\WYou're gonna regret that! I'm a freaking \\Rpilot\\W!";
-            actions = new string[] {"attack", "apologize", "flirt"};
-            next = new bool[] {true, false, false};
-            responses = new string[] {""};
+            settingText = "\\DR-5 HP\n\\RBart: \\WYou're gonna regret that! I'm a freaking \\R\\L1p\\L1i\\L1l\\L1o\\L1t\\W bro!!!";
+            actions = new string[] {"attack", "apologize", "flirt", "run"};
+            next = new bool[] {false, true, false, false};
+            responses = new string[]
+            {
+                "\\DYYou throw another punch, but he simply moves to the side.",
+                "\\DYYou apologize for hurting him in hopes of mercy. \\YBart \\DYblushes and looks down.\n\\RBart: \\WI'm really just a softy, I don't actually like fighting\\L1.\\L1.\\L1.\\L1 I'm sorry\\L1.\\L1.\\L1.",
+                "\\DYYou ask him for his snap, but he's still fuming.",
+                "\\DYYou wish you were able to use \\YWASD\\DY, but this is just a text game."
+            };
+            initializeScene(settingText, actions, responses, next);
         }
     }
 }
