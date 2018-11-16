@@ -404,8 +404,8 @@ namespace MessingAroundMobile
             display("\\RBart [\\G■■■■■■■\\R■■■]");
             Console.WriteLine();
 
-            settingText = "\\RBart: \\WI'm gonna break you, just like.\\L1.\\L1.\\L3 \\RCharlotte\\W!!!";
-            actions = new string[] {"attack", "charlotte?", "run"};
+            settingText = "\\RBart: \\WUmmm, die???";
+            actions = new string[] {"attack", "hurtful", "run"};
             next = new bool[] {true, false, false};
             responses = new string[]
             {
