@@ -295,21 +295,6 @@ namespace MessingAroundMobile
             Thread.Sleep(2 * 100);
             Console.Clear();
 
-            switch (args[0])
-            {
-                case "-scene1":
-                    goto sceneOne;
-                    break;
-                case "-scene2":
-                    goto sceneTwo;
-                    break;
-                case "-scene3":
-                    goto sceneThree;
-                    break;
-                default:
-                    break;
-            }
-
             tutorial:
             // Pretty self-explanatory.
             settingText =
